@@ -44,6 +44,16 @@ public class Player : MonoBehaviour
         Vector3 rotation = transform.eulerAngles;
         rotation.z = direction.y * tilt;
         transform.eulerAngles = rotation;
+
+        /* if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+
+            if (touch.phase = TouchPhase.Began)
+            {
+                direction = Vector3.up * strength;
+            }
+        } */ /* I don't understand the error this gives */
     }
 
     private void AnimateSprite()
