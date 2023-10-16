@@ -288,6 +288,8 @@ MonoBehaviour:
   spawnRate: 1
   minHeight: -1
   maxHeight: 2
+  recordedScore: 0
+  GM: {fileID: 1688890057}
 --- !u!4 &388941994
 Transform:
   m_ObjectHideFlags: 0
@@ -665,6 +667,7 @@ MonoBehaviour:
   scoreText: {fileID: 1396012836}
   playButton: {fileID: 368605355}
   gameOver: {fileID: 1527446114}
+  scoreIndex: 0
 --- !u!4 &1688890058
 Transform:
   m_ObjectHideFlags: 0

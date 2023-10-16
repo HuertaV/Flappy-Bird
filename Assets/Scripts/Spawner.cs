@@ -6,6 +6,8 @@ public class Spawner : MonoBehaviour
     public float spawnRate = 1f;
     public float minHeight = -1f;
     public float maxHeight = 2f;
+    public int recordedScore;
+    public GameManager GM;
 
     private void OnEnable()
     {
@@ -21,6 +23,22 @@ public class Spawner : MonoBehaviour
     {
         GameObject pipes = Instantiate(prefab, transform.position, Quaternion.identity);
         pipes.transform.position += Vector3.up * Random.Range(minHeight, maxHeight);
+    }
+
+    public void DiffRamp()
+    {
+        spawnRate = spawnRate * (recordedScore / 10);
+        Debug.Log("EUIFDEGDUYIEGDUIEYD(UEGDE");
+    }
+
+    public void SetLoop()
+    {
+        InvokeRepeating(nameof(DiffRamp), 1, 1);
+    }
+
+    private void Update()
+    {
+        recordedScore = GM.GetComponent<GameManager>().score;
     }
 
 }

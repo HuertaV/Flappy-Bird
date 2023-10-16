@@ -5,10 +5,10 @@ public class GameManager : MonoBehaviour
 {
     private Player player;
     private Spawner spawner;
-
     public Text scoreText;
     public GameObject playButton;
     public GameObject gameOver;
+    public int scoreIndex = 0;
     public int score { get; private set; }
 
     private void Awake()
@@ -57,6 +57,15 @@ public class GameManager : MonoBehaviour
     {
         score++;
         scoreText.text = score.ToString();
+        if (scoreIndex == 10)
+        {
+            spawner.GetComponent<Spawner>().SetLoop();
+            scoreIndex++;
+        }
+        else
+        {
+            scoreIndex++;
+        }
     }
 
 }
