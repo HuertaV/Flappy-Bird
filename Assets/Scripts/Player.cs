@@ -2,6 +2,7 @@
 
 public class Player : MonoBehaviour
 {
+    public static int NUM_SPRITES = 4;
     private SpriteRenderer spriteRenderer;
     public Sprite[] sprites;
     private int spriteIndex;

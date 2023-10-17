@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
@@ -9,6 +10,10 @@ public class Spawner : MonoBehaviour
     public int recordedScore;
     public GameManager GM;
 
+    private void Start()
+    {
+        spawnRate = 1f;
+    }
     private void OnEnable()
     {
         InvokeRepeating(nameof(Spawn), spawnRate, spawnRate);
@@ -27,18 +32,27 @@ public class Spawner : MonoBehaviour
 
     public void DiffRamp()
     {
-        spawnRate = spawnRate * (recordedScore / 10);
-        Debug.Log("EUIFDEGDUYIEGDUIEYD(UEGDE");
+        StartCoroutine("SpeedUp");
+        CancelInvoke(nameof(Spawn));
+        
+        
     }
 
-    public void SetLoop()
-    {
-        InvokeRepeating(nameof(DiffRamp), 1, 1);
+    IEnumerator SpeedUp() {
+        while (this.enabled)
+        {
+            recordedScore = GM.GetComponent<GameManager>().score;
+            spawnRate *= Mathf.Pow(.995f, recordedScore - 10);
+            yield return new WaitForSeconds(spawnRate);
+            Spawn();
+        }
     }
 
-    private void Update()
-    {
-        recordedScore = GM.GetComponent<GameManager>().score;
-    }
+    //public void SetLoop()
+    //{
+    //    InvokeRepeating(nameof(DiffRamp), 1, 1);
+    //}
+
+
 
 }

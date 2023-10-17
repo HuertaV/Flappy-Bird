@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,8 +34,10 @@ public class GameManager : MonoBehaviour
         player.enabled = true;
 
         Pipes[] pipes = FindObjectsOfType<Pipes>();
+        spawner.spawnRate = 1f;
 
-        for (int i = 0; i < pipes.Length; i++) {
+        for (int i = 0; i < pipes.Length; i++)
+        {
             Destroy(pipes[i].gameObject);
         }
     }
@@ -57,15 +60,11 @@ public class GameManager : MonoBehaviour
     {
         score++;
         scoreText.text = score.ToString();
-        if (scoreIndex == 10)
+        if (score == 10)
         {
-            spawner.GetComponent<Spawner>().SetLoop();
-            scoreIndex++;
+            spawner.GetComponent<Spawner>().DiffRamp();              
         }
-        else
-        {
-            scoreIndex++;
-        }
-    }
 
+    }
+    
 }
