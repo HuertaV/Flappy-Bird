@@ -1,9 +1,10 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+
+    public bool gameActive = false;
     private Player player;
     private Spawner spawner;
     public Text scoreText;
@@ -24,8 +25,11 @@ public class GameManager : MonoBehaviour
 
     public void Play()
     {
+        gameActive = true;
         score = 0;
         scoreText.text = score.ToString();
+
+
 
         playButton.SetActive(false);
         gameOver.SetActive(false);
@@ -35,6 +39,7 @@ public class GameManager : MonoBehaviour
 
         Pipes[] pipes = FindObjectsOfType<Pipes>();
         spawner.spawnRate = 1f;
+        spawner.gameObject.SetActive(true);
 
         for (int i = 0; i < pipes.Length; i++)
         {
@@ -44,6 +49,9 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        spawner.gameObject.SetActive(false);
+
+        gameActive = false;
         playButton.SetActive(true);
         gameOver.SetActive(true);
 
@@ -62,9 +70,9 @@ public class GameManager : MonoBehaviour
         scoreText.text = score.ToString();
         if (score == 10)
         {
-            spawner.GetComponent<Spawner>().DiffRamp();              
+            spawner.GetComponent<Spawner>().DiffRamp();
         }
 
     }
-    
+
 }

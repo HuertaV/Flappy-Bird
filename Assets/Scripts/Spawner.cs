@@ -22,6 +22,7 @@ public class Spawner : MonoBehaviour
     private void OnDisable()
     {
         CancelInvoke(nameof(Spawn));
+        StopCoroutine("SpeedUp");
     }
 
     private void Spawn()
@@ -34,18 +35,30 @@ public class Spawner : MonoBehaviour
     {
         StartCoroutine("SpeedUp");
         CancelInvoke(nameof(Spawn));
-        
-        
+
+
     }
 
-    IEnumerator SpeedUp() {
-        while (this.enabled)
+    IEnumerator SpeedUp()
+    {
+
+        while (GM.gameActive)
         {
-            recordedScore = GM.GetComponent<GameManager>().score;
-            spawnRate *= Mathf.Pow(.995f, recordedScore - 10);
+            recordedScore = GM.score;
+            if (recordedScore < 30)
+                spawnRate *= Mathf.Pow(.9975f, recordedScore - 10);
             yield return new WaitForSeconds(spawnRate);
-            Spawn();
+            if (GM.gameActive)
+            {
+                Spawn();
+            }
         }
+
+    }
+    public void Stop()
+    {
+
+        Debug.Log("Spedd Up Ended. fdjkhfedghjkfdhjk");
     }
 
     //public void SetLoop()
