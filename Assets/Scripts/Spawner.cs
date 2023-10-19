@@ -45,7 +45,7 @@ public class Spawner : MonoBehaviour
         while (GM.gameActive)
         {
             recordedScore = GM.score;
-            if (recordedScore < 30)
+            if (recordedScore < 40)
                 spawnRate *= Mathf.Pow(.9975f, recordedScore - 10);
             yield return new WaitForSeconds(spawnRate);
             if (GM.gameActive)

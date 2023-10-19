@@ -37,6 +37,11 @@ public class Player : MonoBehaviour
             direction = Vector3.up * strength;
         }
 
+        if (Input.GetKeyDown(KeyCode.LeftAlt) || (Input.GetKeyDown(KeyCode.RightAlt)) || Input.GetMouseButtonDown(1))
+        {
+            direction = Vector3.down * strength;
+        }
+
         // Apply gravity and update the position
         direction.y += gravity * Time.deltaTime;
         transform.position += direction * Time.deltaTime;
