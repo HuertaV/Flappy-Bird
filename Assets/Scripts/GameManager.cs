@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public GameObject playButton;
     public GameObject gameOver;
     public int scoreIndex = 0;
+    public GameObject icon;
     public int score { get; private set; }
 
     private void Awake()
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
 
         playButton.SetActive(false);
         gameOver.SetActive(false);
+        icon.SetActive(false);
 
         Time.timeScale = 1f;
         player.enabled = true;
@@ -54,7 +56,7 @@ public class GameManager : MonoBehaviour
         gameActive = false;
         playButton.SetActive(true);
         gameOver.SetActive(true);
-
+        icon.SetActive(true);
         Pause();
     }
 
