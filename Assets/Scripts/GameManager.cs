@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public int scoreIndex = 0;
     public GameObject icon;
     public int score { get; private set; }
+    public GameObject deadBird;
 
     private void Awake()
     {
@@ -35,6 +36,7 @@ public class GameManager : MonoBehaviour
         playButton.SetActive(false);
         gameOver.SetActive(false);
         icon.SetActive(false);
+        deadBird.SetActive(false);
 
         Time.timeScale = 1f;
         player.enabled = true;
@@ -58,6 +60,7 @@ public class GameManager : MonoBehaviour
         gameOver.SetActive(true);
         icon.SetActive(true);
         Pause();
+        deadBird.SetActive(true);
     }
 
     public void Pause()
