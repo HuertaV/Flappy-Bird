@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public float gravity = -9.81f;
     public float tilt = 5f;
     public Sprite deathSprite;
+    public bool isDead;
 
     private Vector3 direction;
 
@@ -66,15 +67,22 @@ public class Player : MonoBehaviour
     private void AnimateSprite()
     {
         spriteIndex++;
-
-        if (spriteIndex >= sprites.Length)
+        if (!isDead)
         {
-            spriteIndex = 0;
+            if (spriteIndex >= sprites.Length)
+            {
+                spriteIndex = 0;
+            }
+
+            if (spriteIndex < sprites.Length && spriteIndex >= 0)
+            {
+                spriteRenderer.sprite = sprites[spriteIndex];
+            }
         }
-
-        if (spriteIndex < sprites.Length && spriteIndex >= 0)
+        else
         {
-            spriteRenderer.sprite = sprites[spriteIndex];
+            isDead = true;
+            spriteRenderer.sprite = deathSprite;
         }
     }
 

@@ -63,8 +63,8 @@ public class GameManager : MonoBehaviour
 
     public void Pause()
     {
-        Time.timeScale = 0f;
         player.enabled = false;
+        Time.timeScale = 0f;
     }
 
     public void IncreaseScore()
