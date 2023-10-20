@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +14,9 @@ public class GameManager : MonoBehaviour
     public int scoreIndex = 0;
     public GameObject icon;
     public int score { get; private set; }
-    public GameObject deadBird;
+    public GameObject getReady;
+    public int highScore { get; private set; }
+    public TMP_Text highScoreText;
 
     private void Awake()
     {
@@ -32,7 +35,7 @@ public class GameManager : MonoBehaviour
         scoreText.text = score.ToString();
 
 
-
+        getReady.SetActive(false);
         playButton.SetActive(false);
         gameOver.SetActive(false);
         icon.SetActive(false);
@@ -70,6 +73,10 @@ public class GameManager : MonoBehaviour
     public void IncreaseScore()
     {
         score++;
+        if (highScore < score) {
+            highScore = score;
+            highScoreText.text = highScore.ToString();
+        }
         scoreText.text = score.ToString();
         if (score == 10)
         {
