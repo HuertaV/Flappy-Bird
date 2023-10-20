@@ -35,8 +35,6 @@ public class Spawner : MonoBehaviour
     {
         StartCoroutine("SpeedUp");
         CancelInvoke(nameof(Spawn));
-
-
     }
 
     IEnumerator SpeedUp()

@@ -81,7 +81,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            isDead = true;
+            isDead = false;
             spriteRenderer.sprite = deathSprite;
         }
     }
@@ -90,6 +90,7 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Obstacle"))
         {
+            isDead = true;
             FindObjectOfType<GameManager>().GameOver();
         }
         else if (other.gameObject.CompareTag("Scoring"))

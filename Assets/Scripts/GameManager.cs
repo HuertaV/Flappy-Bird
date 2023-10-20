@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public GameObject getReady;
     public int highScore { get; private set; }
     public TMP_Text highScoreText;
+    public bool dead;
 
     private void Awake()
     {
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
 
     public void Play()
     {
+        dead = true;
         gameActive = true;
         score = 0;
         scoreText.text = score.ToString();
@@ -56,7 +58,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         spawner.gameObject.SetActive(false);
-
+        dead = true;
         gameActive = false;
         playButton.SetActive(true);
         gameOver.SetActive(true);
