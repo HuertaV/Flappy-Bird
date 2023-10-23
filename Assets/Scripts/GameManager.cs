@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public int highScore { get; private set; }
     public TMP_Text highScoreText;
     public bool dead;
+    public AudioSource Button;
 
     private void Awake()
     {
@@ -35,7 +36,7 @@ public class GameManager : MonoBehaviour
         gameActive = true;
         score = 0;
         scoreText.text = score.ToString();
-
+        Button.Play();
 
         getReady.SetActive(false);
         playButton.SetActive(false);
